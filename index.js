@@ -4,6 +4,7 @@ const context = canvas.getContext('2d');
 
 // VARIABLES
 let stars = [];
+let blackholes = [];
 let width = window.innerWidth;
 let height = window.innerHeight;
 
@@ -25,7 +26,7 @@ function clean() {
 }
 
 setInterval(() => {
-    for (let i = 0; i < 1; i++) {
+    //for (let i = 0; i < 1; i++) {
         let randomX = Math.random() * width;
         let randomY = Math.random() * height;
         let randomWidth = Math.random() * 8;
@@ -33,8 +34,18 @@ setInterval(() => {
         let randomOpacity = Math.random();
 
         stars.push(new Star(randomX, randomY, randomWidth, randomHeight, randomOpacity));
-    }
+    //}
 }, 100);
+
+setInterval(() => {
+    let blackholeX = Math.random() * width;
+    let blackholeY = Math.random() * height;
+    let blackholeRadiusX = Math.random() * width / 4 + 160;
+    let blackholeRadiusY = Math.random() * height / 5 + 150;
+    let blacholeRotationNumber = Math.random() / 2;
+    
+    blackholes.push(new BlackHole(blackholeX, blackholeY, blackholeRadiusX, blackholeRadiusY, blacholeRotationNumber));
+}, 15000);
 
 // FUNCTION FOR RENDERING
 function draw() {
@@ -46,6 +57,9 @@ function draw() {
     // METHOD FOR RENDERING
     for (let i = 0; i < stars.length; i++) {
         stars[i].move();
+    }
+    for (let i = 0; i < blackholes.length; i++) {
+        blackholes[i].move();
     }
 }
 draw();
