@@ -5,6 +5,7 @@ const context = canvas.getContext('2d');
 // VARIABLES
 let stars = [];
 let blackholes = [];
+let asteroids = [];
 let width = window.innerWidth;
 let height = window.innerHeight;
 
@@ -26,15 +27,13 @@ function clean() {
 }
 
 setInterval(() => {
-    //for (let i = 0; i < 1; i++) {
-        let randomX = Math.random() * width;
-        let randomY = Math.random() * height;
-        let randomWidth = Math.random() * 8;
-        let randomHeight = Math.random() * 8; 
-        let randomOpacity = Math.random();
+    let randomX = Math.random() * width;
+    let randomY = Math.random() * height;
+    let randomWidth = Math.random() * 8;
+    let randomHeight = Math.random() * 8; 
+    let randomOpacity = Math.random();
 
-        stars.push(new Star(randomX, randomY, randomWidth, randomHeight, randomOpacity));
-    //}
+    stars.push(new Star(randomX, randomY, randomWidth, randomHeight, randomOpacity));
 }, 100);
 
 setInterval(() => {
@@ -46,6 +45,14 @@ setInterval(() => {
     
     blackholes.push(new BlackHole(blackholeX, blackholeY, blackholeRadiusX, blackholeRadiusY, blacholeRotationNumber));
 }, 15000);
+
+setInterval(() => {
+    let asteroidX = Math.random() * width;
+    let asteroidY = Math.random() * height;
+    let asteroidRotatioNumber = Math.random();
+
+    asteroids.push(new Asteroid(asteroidX, asteroidY, asteroidRotatioNumber));
+}, 6000);
 
 // FUNCTION FOR RENDERING
 function draw() {
@@ -60,6 +67,9 @@ function draw() {
     }
     for (let i = 0; i < blackholes.length; i++) {
         blackholes[i].move();
+    }
+    for (let i = 0; i < asteroids.length; i++) {
+        asteroids[i].move();
     }
 }
 draw();
