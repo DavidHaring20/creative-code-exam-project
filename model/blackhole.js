@@ -45,17 +45,17 @@ class BlackHole {
 
     move() {
         if (this.x < canvas.width / 2 && this.y < canvas.height / 2) {          // QUADRANT 1
-            this.x-= 0.4;
-            this.y-= 0.3;
+            this.x--;
+            this.y--;
         } else if (this.x > canvas.width / 2 && this.y < canvas.height / 2) {   // QUADRANT 2      
-            this.x+= 0.4;
-            this.y-= 0.3; 
+            this.x++;
+            this.y--; 
         } else if (this.x < canvas.width / 2 && this.y > canvas.height / 2) {   // QUADRANT 3   
-            this.x-= 0.4;
-            this.y+= 0.3;
+            this.x--;
+            this.y++;
         } else if (this.x > canvas.width / 2 && this.y > canvas.height / 2) {   // QUADRANT 4
-            this.x+= 0.4;
-            this.y+= 0.3;
+            this.x++;
+            this.y++;
         }
         
         this.draw();

@@ -6,8 +6,10 @@ const context = canvas.getContext('2d');
 let stars = [];
 let blackholes = [];
 let asteroids = [];
+let alienships = [];
 let width = window.innerWidth;
 let height = window.innerHeight;
+const fps = 1000/5;
 
 // EVENT LISTENERS 
 window.addEventListener("load", () => {
@@ -34,7 +36,7 @@ setInterval(() => {
     let randomOpacity = Math.random();
 
     stars.push(new Star(randomX, randomY, randomWidth, randomHeight, randomOpacity));
-}, 100);
+}, 2000);
 
 setInterval(() => {
     let blackholeX = Math.random() * width;
@@ -44,7 +46,7 @@ setInterval(() => {
     let blacholeRotationNumber = Math.random() / 2;
     
     blackholes.push(new BlackHole(blackholeX, blackholeY, blackholeRadiusX, blackholeRadiusY, blacholeRotationNumber));
-}, 15000);
+}, 60000);
 
 setInterval(() => {
     let asteroidX = Math.random() * width;
@@ -52,11 +54,20 @@ setInterval(() => {
     let asteroidRotatioNumber = Math.random();
 
     asteroids.push(new Asteroid(asteroidX, asteroidY, asteroidRotatioNumber));
-}, 6000);
+}, 20000);
+
+setInterval(() => {
+    let alienShipX = Math.random() * width;
+    let alienShipY = Math.random() * height;
+
+    alienships.push(new AlienShip(alienShipX, alienShipY));
+}, 40000);
 
 // FUNCTION FOR RENDERING
 function draw() {
-    requestAnimationFrame(draw);
+    setTimeout(() => {
+        requestAnimationFrame(draw);
+    }, fps);
 
     // METHOD FOR CLEANING SCREEN
     clean();
@@ -70,6 +81,9 @@ function draw() {
     }
     for (let i = 0; i < asteroids.length; i++) {
         asteroids[i].move();
+    }
+    for (let i = 0; i < alienships.length; i++) {
+        alienships[i].move();
     }
 }
 draw();
