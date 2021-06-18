@@ -9,6 +9,19 @@
 <body style="overflow-x: hidden; overflow-y: hidden; margin: 0; background-color: black;">    
     <canvas id="canvas"></canvas>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+    <script>
+        var sound = new Howl({
+            src: ['./music/slow-music.mp3'],
+            loop: true
+        })
+
+        window.addEventListener("click", () => {
+            sound.play();
+            console.log(sound);
+        });
+        
+    </script>
     <script src="/model/star.js"></script>
     <script src="/model/blackhole.js"></script>
     <script src="/model/asteroid.js"></script>
